@@ -11,12 +11,14 @@ import com.anago.twitchkita.Adapter.UserAdapter
 import com.anago.twitchkita.DataManager.Companion.loadStreamers
 import com.anago.twitchkita.DataManager.Companion.saveStreamers
 import com.anago.twitchkita.DataManager.Companion.streamers
+import com.anago.twitchkita.Service.BackgroundService
 
 class MainActivity : AppCompatActivity() {
     var recyclerView: RecyclerView? = null
     private var nameEdit: EditText? = null
     private var addBtn: Button? = null
     private var startBtn: Button? = null
+    private var stopBtn: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,7 +36,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         startBtn!!.setOnClickListener {
-            startService(Intent(this, BackgroundService::class.java))
+            startForegroundService(Intent(this, BackgroundService::class.java))
+        }
+
+        stopBtn!!.setOnClickListener {
+            stopService(Intent(this, BackgroundService::class.java))
         }
     }
 
@@ -42,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         nameEdit = findViewById(R.id.name)
         addBtn = findViewById(R.id.add)
         startBtn = findViewById(R.id.start)
+        stopBtn = findViewById(R.id.stop)
 
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerView = findViewById(R.id.users)

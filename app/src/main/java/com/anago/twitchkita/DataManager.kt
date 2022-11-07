@@ -4,6 +4,8 @@ import android.content.Context
 import com.anago.twitchkita.AnagoApp.Companion.getAnagoApp
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import org.json.JSONArray
+import org.json.JSONObject
 
 
 class DataManager {
